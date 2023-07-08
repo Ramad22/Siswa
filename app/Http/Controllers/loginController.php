@@ -15,11 +15,29 @@ class loginController extends Controller
     public function Admin(){
         return view('siswa');
     }
+    public function super(){
+        return view('Super');
+    }
+    // public function Loginproses(Request $request){
+    //     if(Auth::attempt($request->only('email','password'),$request->remember)){
+    //         return redirect('siswa');
+    //     }
+    //     return \redirect('Login');
+    // }
     public function Loginproses(Request $request){
-        if(Auth::attempt($request->only('email','password'),$request->remember)){
+        $infologin = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+    if (Auth::attempt($infologin)){
+          if (Auth::user()->role == 'super'){
+            return redirect('Super');
+        } elseif (Auth::user()->role == 'admin'){
             return redirect('siswa');
         }
-        return \redirect('Login');
+    }
+    return \redirect('Login');
     }
 
     public function Regis(){
@@ -31,6 +49,7 @@ class loginController extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>Bcrypt($request->password),
+            'role' => $request->role,
             // 'remember_token'=> Str::random(60),
         ]);
         return redirect('/Login');

@@ -37,6 +37,9 @@
                 <label for="inputPassword">Password</label>
                 <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Enter your password">
               </div>
+              <div class="form-group">
+                <input type="hidden" class="form-control" name="role" value="admin" placeholder="Enter your password">
+              </div>
               <button type="submit" class="btn btn-primary btn-block">Register</button>
             </form>
             <br>

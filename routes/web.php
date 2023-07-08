@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\loginController;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 
@@ -17,10 +18,10 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+    
+
+Route::get('Super',[EmployeeController::class,'Super'])->name('Super')->middleware('auth');
 Route::get('siswa',[EmployeeController::class,'index'])->name('siswa')->middleware('auth');
 
 Route::get('tambahsiswa',[EmployeeController::class,'tambahsiswa'])->name('tambahsiswa');

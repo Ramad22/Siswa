@@ -24,6 +24,9 @@ class EmployeeController extends Controller
     public function tambahsiswa(){
         return view('tambahdata');
     }
+    public function Super(){
+        return view('Super');
+    }
 
     public function insertdata(Request $request){
         // dd($request->all());
